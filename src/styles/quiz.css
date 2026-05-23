@@ -1,0 +1,208 @@
+:root {
+  --quiz-bg: #F0F0F8;
+  --quiz-primary: #7B6FE8;
+  --quiz-primary-dark: #6358D4;
+  --quiz-primary-light: #EEECFF;
+  --quiz-white: #FFFFFF;
+  --quiz-text-1: #1A1A2E;
+  --quiz-text-2: #4B5563;
+  --quiz-text-3: #9CA3AF;
+  --quiz-success: #22C55E;
+  --quiz-warning: #F59E0B;
+  --quiz-border: #E5E7EB;
+  --quiz-card: #FFFFFF;
+  --quiz-gradient-primary: linear-gradient(135deg, #7B6FE8, #A78BFA);
+  --quiz-gradient-cta: linear-gradient(135deg, #7B6FE8, #6358D4);
+  --quiz-gradient-dark: linear-gradient(185deg, #1A1A2E 0%, #2D1B69 100%);
+  --quiz-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  --quiz-shadow-lg: 0 10px 25px -5px rgba(123, 111, 232, 0.3);
+}
+
+.quiz-container {
+  background-color: var(--quiz-bg);
+  min-h: 100vh;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--quiz-text-2);
+}
+
+/* Ocultar as setas de inputs do tipo number */
+.input-no-spinners::-webkit-outer-spin-button,
+.input-no-spinners::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.input-no-spinners {
+  -moz-appearance: textfield;
+}
+
+/* Estilo do botão de ação primário */
+.quiz-btn-primary {
+  height: 52px;
+  background: var(--quiz-gradient-cta);
+  color: var(--quiz-white);
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 300ms ease;
+  box-shadow: 0 4px 14px rgba(123, 111, 232, 0.4);
+}
+
+.quiz-btn-primary:hover:not(:disabled) {
+  transform: translateY(-1.5px);
+  box-shadow: var(--quiz-shadow-lg);
+}
+
+.quiz-btn-primary:active:not(:disabled) {
+  transform: translateY(0.5px);
+}
+
+.quiz-btn-primary:disabled {
+  background: #D1D5DB;
+  color: #9CA3AF;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* Efeito de Glow e Pulsação para o botão final */
+@keyframes buttonPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(123, 111, 232, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(123, 111, 232, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(123, 111, 232, 0);
+  }
+}
+
+.btn-pulse-glow {
+  animation: buttonPulse 2s infinite cubic-bezier(0.25, 0, 0, 1);
+}
+
+/* Efeito de cérebro de IA pulsando */
+@keyframes brainPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 8px rgba(123, 111, 232, 0.4));
+  }
+  50% {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 20px rgba(123, 111, 232, 0.8));
+  }
+}
+
+.brain-pulse-anim {
+  animation: brainPulse 2.5s infinite ease-in-out;
+}
+
+/* Slide e Fade animations em CSS (como fallback) */
+.quiz-slide-enter {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.quiz-slide-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.quiz-slide-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.quiz-slide-exit-active {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Glassmorphism customizado */
+.quiz-glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.result-glass-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Barra de progresso do IMC */
+.imc-track {
+  height: 8px;
+  background: linear-gradient(to right, #3B82F6 0%, #22C55E 30%, #F59E0B 70%, #EF4444 100%);
+  border-radius: 9999px;
+  position: relative;
+}
+
+.imc-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 3px solid #1A1A2E;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: left 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Input customizado de underline para peso desejado */
+.input-underline-target {
+  font-family: 'DM Mono', monospace;
+  font-size: 56px;
+  font-weight: 700;
+  color: var(--quiz-primary);
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-image: linear-gradient(to right, #7B6FE8, #A78BFA) 1;
+  text-align: center;
+  width: 150px;
+  outline: none;
+}
+
+/* Grid layout da faixa etária */
+.age-grid-button {
+  height: 64px;
+  border-radius: 9999px;
+  border: 1px solid var(--quiz-border);
+  background: var(--quiz-white);
+  color: var(--quiz-text-1);
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 200ms ease;
+}
+
+.age-grid-button.selected {
+  background: var(--quiz-gradient-primary);
+  color: var(--quiz-white);
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(123, 111, 232, 0.35);
+}
+
+/* Badges e tags customizadas */
+.quiz-pill-badge {
+  background: var(--quiz-primary-light);
+  color: var(--quiz-primary);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 9999px;
+}
+
+/* Responsividade adicional */
+@media (max-width: 480px) {
+  .quiz-content-area {
+    padding: 16px 12px;
+  }
+}
